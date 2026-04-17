@@ -49,7 +49,15 @@ def even_sum():
     print(f"La somma dei numeri pari nella lista è: {sum(pari)}")
 
 # --- Funzione 4. ---
-
+def odd_print():
+    lista = list_gen()
+    dispari = []
+    for i in range(0, len(lista)):
+        if lista[i] % 2 != 0:
+            dispari.append(lista[i])
+        else:
+            pass
+    print(f"I numeri dispari nella lista sono: {(dispari)}")
 
 # --- Funzione 5. ---
 
@@ -71,7 +79,7 @@ match menu:
     case 3:
         even_sum()
     case 4:
-        pass
+        odd_print()
     case 5:
         pass
     case 6:
