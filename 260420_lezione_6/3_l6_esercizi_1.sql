@@ -16,7 +16,7 @@ Elencare i nomi (Name) e la popolazione (Population) delle città (City) degli S
 ordinando i risultati dalla città più popolosa alla meno popolosa.
 */
 SELECT 
-	Name, 
+	Name 					AS City, 
 	Population
 FROM world.city
 WHERE 
