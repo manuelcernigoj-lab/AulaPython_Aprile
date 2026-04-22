@@ -13,7 +13,7 @@ dalla classe, senza usare nessuna delle istanze create.
 
 class Animale:
 
-    numero_animali = 0                                      # attributo di classe: contatore
+    numero_animali = 0                                      # attributo di classe: contatore - condiviso da tutti
 
     def __init__(self, nome, specie):                       # costruttore
         self.nome = nome                                    # attributo di istanza
@@ -21,7 +21,7 @@ class Animale:
         Animale.numero_animali += 1                         # aumento del contatore
     
     @classmethod                                            # metodo di classe
-    def quanti_animali(cls):
+    def quanti_animali(cls):                                # cls = la classe Animale
         print(f"Numero di animali creati: {cls.numero_animali}")
 
 # creazione delle istanze animali
