@@ -39,7 +39,15 @@ class ContoBancario:
     
     def preleva(self,
                 importo: float):
-        if importo > 0:
+        if self.__saldo > importo and importo > 0:
+            self.__saldo -= importo
+            print(f"PRELIEVO ESEGUITO - hai prelevato {importo:.2f}€ dal conto")
+        elif importo <= 0:
+            print(f"ERRORE - inserito importo invalido")
+        else:
+            print(f"ERRORE - saldo conto negativo, impossibile prelevare")
+
+       """  if importo > 0:
             if self.__saldo > 0 :
                 if self.__saldo > importo:
                     self.__saldo -= importo
@@ -49,7 +57,7 @@ class ContoBancario:
             else:
                 print(f"ERRORE - saldo conto negativo, impossibile prelevare")
         else:
-            print(f"ERRORE - inserito importo negativo")
+            print(f"ERRORE - inserito importo negativo") """
 
     @property                               # per definire il getter di __saldo
     def visualizza_saldo(self):
