@@ -197,12 +197,12 @@ for fila in ["B", "C"]:
 
 MENU = """
 --------------------------------
-         TEATRO - MENU         
+|         TEATRO - MENU        |
 --------------------------------
-   1. Prenota posto            
-   2. Libera posto             
-   3. Posti occupati           
-   0. Esci                     
+|  1. Prenota posto            |
+|  2. Libera posto             |
+|  3. Posti occupati           |
+|  0. Esci                     |
 --------------------------------
 """
 

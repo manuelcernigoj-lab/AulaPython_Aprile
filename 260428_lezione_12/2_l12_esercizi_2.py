@@ -152,7 +152,7 @@ class Camion(VeicoloTrasporto):
         self.numero_assi = numero_assi
     
     def costo_manutenzione(self):
-        manutenzione = 100 * self.numero_assi + 1 * self._carico_attuale
+        manutenzione = (100 * self.numero_assi) + (1 * self._carico_attuale)
         return manutenzione    
 
 
@@ -175,7 +175,9 @@ class GestoreFlotta:
     # --- rimuovi veicolo ---
     def rimuovi_veicolo(self,
                         targa: str):
-        print(VeicoloTrasporto.info())
+        if targa in self.veicoli:
+            
+
         
 
 
