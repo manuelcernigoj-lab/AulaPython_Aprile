@@ -1,0 +1,72 @@
+Log vendite inserite il 04-05-2026 16:57:
+
+--- ANALISI VENDITE ---
+TOTALE: 241
+MEDIA: 60.25
+
+--- VENDITE SOPRA LA MEDIA ---
+02-05-2026: 67
+04-05-2026: 89
+----------------------------------------
+
+
+Log vendite inserite il 04-05-2026 16:57:
+
+--- ANALISI VENDITE ---
+TOTALE: 216
+MEDIA: 54.0
+
+--- VENDITE SOPRA LA MEDIA ---
+02-05-2026: 73
+04-05-2026: 69
+----------------------------------------
+
+
+Log vendite inserite il 04-05-2026 17:02:
+
+--- ANALISI VENDITE ---
+TOTALE: 339
+MEDIA: 56.5
+
+--- VENDITE SOPRA LA MEDIA ---
+29-04-2026: 89
+03-05-2026: 94
+----------------------------------------
+
+
+Log vendite inserite il 04-05-2026 17:09:
+
+--- ANALISI VENDITE ---
+TOTALE: 297
+MEDIA: 49.5
+
+--- VENDITE SOPRA LA MEDIA ---
+29-04-2026: 90
+01-05-2026: 73
+----------------------------------------
+
+
+Log vendite inserite il 04-05-2026 17:09:
+
+--- ANALISI VENDITE ---
+TOTALE: 189
+MEDIA: 37.8
+
+--- VENDITE SOPRA LA MEDIA ---
+30-04-2026: 57
+02-05-2026: 52
+----------------------------------------
+
+
+Log vendite inserite il 04-05-2026 17:10:
+
+--- ANALISI VENDITE ---
+TOTALE: 220
+MEDIA: 55.0
+
+--- VENDITE SOPRA LA MEDIA ---
+01-05-2026: 78
+03-05-2026: 62
+----------------------------------------
+
+

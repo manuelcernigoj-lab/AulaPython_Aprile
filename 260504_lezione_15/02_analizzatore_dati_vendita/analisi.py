@@ -11,39 +11,51 @@ import inserimento
 import numpy as np
 from datetime import datetime as dt, timedelta as td
 
+vendite = inserimento.inserisci_vendite()
+date = [dt.today() - td(days = i) for i in range(len(vendite)-1, -1, -1)]
 
-class Analisi:
+def totale_vendite():
 
-   def calcola_statistiche(self):
-      self.vendite = inserimento.Inserimento.lista_vendite()
-      self.date = [dt.today() - td(days = i) for i in range(len(self.vendite)-1, -1, -1)]
+   totale = np.sum(vendite)
+   return totale
 
-      self.totale = np.sum(self.vendite)
-      self.media = np.mean(self.vendite)
+def media_vendite():
 
-      print(f"""
---- ANALISI VENDITE ---
-TOTALE: {self.totale}
-MEDIA: {self.media}
-""")
+   media = np.mean(vendite)
+   return media
 
-   def giorni_sopra_media(self):
-      sopra_media = {}
+def vendite_sopra_media():
 
-      for d, v in zip(self.date, self.vendite):
-         if v > self.media:
-            sopra_media[d.strftime('%d-%m-%Y')] = v
+   sopra_media = {}
+
+   for d, v in zip(date, vendite):
+      if v > media_vendite():
+         sopra_media[d.strftime('%d-%m-%Y')] = v
    
-      print("--- VENDITE SOPRA LA MEDIA ---")
-      if sopra_media:
-         for d, v in sopra_media.items():
-            print(f"{d}: {v}")
-      else:
-         print(f"Non ci sono vendite sopra la media nella lista")
+   return sopra_media
 
-# --- Test ---
-a = Analisi()          
-a.calcola_statistiche()
-a.giorni_sopra_media()
+def report_vendite():
 
+   report = ""
 
+   report += f"""
+--- ANALISI VENDITE ---
+TOTALE: {totale_vendite()}
+MEDIA: {media_vendite()}
+
+--- VENDITE SOPRA LA MEDIA ---
+"""
+   sopra_media = vendite_sopra_media()
+   if sopra_media:
+      for d, v in sopra_media.items():
+         report += f"{d}: {v}\n"
+   else:
+      report += "Non ci sono vendite sopra la media nella lista\n"
+   
+   report += f"{'-' * 40}\n"
+   return report
+
+"""
+# --- Test ---       
+report_vendite()
+"""

@@ -7,27 +7,30 @@
    dell'errore e chiedendogli di reinserire i dati.
 """
 
-class Inserimento:
-
-   def lista_vendite():
-
-      check = True
-
-      while check:
-         importi = input("Inserirsci una serie di importi di vendita separati da spazi (es. 10 5 36 820 50): ")
-         vendite = importi.split(" ")
-         vendite_int = []
+def inserisci_vendite():
       
-         # conversione: str → int
-         for v in vendite:
-            try:
-               vendite_int.append(int(v))
-            except ValueError:
-               print(f"ERRORE: trovato un valore anomalo nella lista '{v}' → inserisci solo interi separati da spazi.")     
-               break
-         # eseguito solo se il for loop termina senza 'break'
-         else:
-            check = False
+   check = True
+
+   while check:
+      importi = input("Inserirsci gli importi di vendita degli ultimi giorni separati da spazi (es. 10 5 36 820 50): ")
+      vendite = importi.split(" ")
+      vendite_int = []
+      
+      # conversione: str → int
+      for v in vendite:
+         try:
+            vendite_int.append(int(v))
+         except ValueError:
+            print(f"ERRORE: trovato un valore anomalo nella lista '{v}' → inserisci solo interi separati da spazi.")     
+            break
+      # eseguito solo se il for loop termina senza 'break'
+      else:
+         check = False
    
-      print(f"VENDITE INSERITE: {vendite_int}")
-      return vendite_int
+   print(f"VENDITE INSERITE: {vendite_int}")
+   return vendite_int
+
+""" 
+# --- Test ---
+inserisci_vendite()
+"""

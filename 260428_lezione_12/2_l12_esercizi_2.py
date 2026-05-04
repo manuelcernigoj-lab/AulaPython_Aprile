@@ -93,6 +93,8 @@ poi traslare
 
 from abc import ABC, abstractmethod
 
+# --- classe astratta base ---
+
 class VeicoloTrasporto(ABC):
     
     def __init__(self,
@@ -139,6 +141,8 @@ class VeicoloTrasporto(ABC):
     def info(self):
         return f"Targa: {self.targa} | Capacità: {self.peso_massimo}kg | Carico attuale: {self.carico_attuale}kg"
 
+# --- sottoclassi concrete ---
+
 class Camion(VeicoloTrasporto):
     
     def __init__(self,
@@ -152,8 +156,8 @@ class Camion(VeicoloTrasporto):
         self.numero_assi = numero_assi
     
     def costo_manutenzione(self):
-        manutenzione = (100 * self.numero_assi) + (1 * self._carico_attuale)
-        return manutenzione    
+        # 100€ per asse + 1€ per kg di carico massimo
+        return (100 * self.numero_assi) + (1 * self._peso_massimo)    
 
 
 class Furgone(VeicoloTrasporto):
@@ -165,12 +169,13 @@ class Motocarro(VeicoloTrasporto):
 class GestoreFlotta:
     
     def __init__(self):
-        self.veicoli = []
+        self.veicoli: list[VeicoloTrasporto] = []
 
     # --- aggiungi veicolo ---
     def aggiungi_veicolo(self,
                          veicolo: VeicoloTrasporto):
         self.veicoli.append(veicolo)
+        print(f"Veicolo {veicolo.targa} aggiunto alla flotta.")
     
     # --- rimuovi veicolo ---
     def rimuovi_veicolo(self,
@@ -212,7 +217,10 @@ scelta = int(input("Scelta: "))
 match scelta:
     case 1:
         print(AGGIUNGI_VEICOLO)
-        v = int(input("Selezionato: "))
+        tipo = int(input("Selezionato: "))
+        targa = input("Targa: ").upper()
+        peso_max = int(input("Peso massimo (kg): "))
+
         
         GestoreFlotta.aggiungi_veicolo()
     case 2:
