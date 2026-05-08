@@ -1,0 +1,5 @@
+id|nome_paziente|cognome_paziente|farmaco|dose
+1|Mario|Rossi|Paracetamolo|500 mg/die
+2|Annarita|Verdi|Ibuprofene|400 mg/die
+3|Pina|Brambilla|Amoxicillina|875 mg/die
+4|Luca|Montorsi|Omeprazolo|20 mg/die

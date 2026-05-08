@@ -9,8 +9,8 @@ class GestoreRicette:
 
     def __init__(self):
         self.ricette = []           # lista di oggetti Ricetta
-        self.carica()               # carica subito da file
         self.file_path = None       # inizializzazione del path
+        self.carica()               # carica subito da file
 
     # --- I/O ---
     def carica(self):
@@ -27,10 +27,15 @@ class GestoreRicette:
             files = []                      # cartella appena creata → sicuramente vuota, niente da listare
 
         if not files:
-            print("Nessun file trovato nella cartella. Partenza con lista vuota.")
+            print("Nessun file trovato nella cartella.")
+            nome_file = input("Nome nuovo file (es. ricette_maggio.csv o ricette_maggio.txt): ").strip()
+            self.file_path = os.path.join(cartella, nome_file)
+            print(f"Nuovo file '{nome_file}' verrà creato al primo salvataggio.")
             return
 
         # --- Mostra file disponibili ---
+        print("\nBenvenuto nel sistema: GESTIONE RICETTE")
+        print("-" * 40)
         print("\nFile disponibili:")
         for i, f in enumerate(files, start=1):
             print(f"  {i}. {f}")
@@ -38,10 +43,10 @@ class GestoreRicette:
 
         # --- Scelta utente ---
         while True:
-            scelta = int(input("\nScegli numero file (0 per nuovo): "))
+            scelta = input("\nScegli numero file (0 per nuovo): ").strip()
 
-            if scelta == 0:
-                nome_file = input("Nome nuovo file (es. ricette_mario_rossi.csv o ricette_mario_rossi.txt): ").strip()
+            if scelta == "0":
+                nome_file = input("Nome nuovo file (es. ricette_maggio.csv o ricette_maggio.txt): ").strip()
                 self.file_path = os.path.join(cartella, nome_file)
                 print(f"Nuovo file '{nome_file}' verrà creato al primo salvataggio.")
                 return
@@ -74,6 +79,7 @@ class GestoreRicette:
         elif estensione == "txt":
             try:
                 with open(self.file_path, "r", encoding = "utf-8") as f:
+                    next(f)     # ← salta intestazione
                     for riga in f:
                         riga = riga.strip()
                         if not riga:        # salta righe vuote
@@ -111,6 +117,7 @@ class GestoreRicette:
         # apri file con come txt, scrivi i campi + tutte le righe usa '|' come separatore arbitrario
         elif estensione == "txt":
             with open(self.file_path, "w", encoding="utf-8") as f:
+                f.write("id|nome_paziente|cognome_paziente|farmaco|dose\n")  # ← intestazione
                 for r in self.ricette:
                     f.write(f"{r.id}|{r.nome_paziente}|{r.cognome_paziente}|{r.farmaco}|{r.dose}\n")
 
@@ -172,7 +179,7 @@ class GestoreRicette:
         nome    = input(f"Nome ({ricetta.nome_paziente}): ").strip()
         cognome = input(f"Cognome ({ricetta.cognome_paziente}): ").strip()
         farmaco = input(f"Farmaco ({ricetta.farmaco}): ").strip()
-        dose    = float(input(f"Dose ({ricetta.dose}): "))
+        dose = input(f"Dose ({ricetta.dose}): ").strip()
 
         if nome:    ricetta.nome_paziente    = nome
         if cognome: ricetta.cognome_paziente = cognome
@@ -183,16 +190,51 @@ class GestoreRicette:
         print("Ricetta modificata.")
 
     def elimina(self):
-        pass  # chiedi id, rimuovi con list comprehension, salva
+        # chiedi id, rimuovi con list comprehension, salva
+        self.visualizza()
+        if not self.ricette:
+            return
 
-    # --- Utilità interna ---
+        try:
+            id_cerca = int(input("\nID ricetta da eliminare: ").strip())
+        except ValueError:
+            print("ID non valido.")
+            return
+
+        originale = len(self.ricette)
+        self.ricette = [r for r in self.ricette if r.id != id_cerca]
+
+        if len(self.ricette) < originale:
+            self.salva()
+            print(f"Ricetta {id_cerca} eliminata.")
+        else:
+            print(f"Nessuna ricetta con ID {id_cerca}.")
+
+    # --- Gestione degli ID ---
     def _nuovo_id(self):
-        pass  # ritorna max(id esistenti) + 1  oppure 1 se lista vuota
-
+        # ritorna max(id esistenti) + 1  oppure 1 se lista vuota
+        if not self.ricette:
+            return 1
+        return max(r.id for r in self.ricette) + 1
 
 # --- Menu ---
+
+MENU = """
+--------------------------------
+|        Gestione Ricette       |
+--------------------------------
+|  1. Visualizza ricette        |
+|  2. Aggiungi ricetta          |
+|  3. Modifica ricetta          |
+|  4. Elimina ricetta           |
+|  5. Salva ed esci             |
+--------------------------------
+"""
+
 def menu():
-    pass  # stampa opzioni 1-5, ritorna la scelta dell'utente
+    # stampa opzioni 1-5, ritorna la scelta dell'utente
+    print(MENU)
+    return input("Scelta: ").strip()
 
 
 # --- Avvio ---
@@ -202,16 +244,17 @@ if __name__ == "__main__":
     while True:
         scelta = menu()
 
-        if scelta == "1":
-            gestore.visualizza()
-        elif scelta == "2":
-            gestore.aggiungi()
-        elif scelta == "3":
-            gestore.modifica()
-        elif scelta == "4":
-            gestore.elimina()
-        elif scelta == "5":
-            print("Arrivederci.")
-            break
-        else:
-            print("Scelta non valida.")
+        match scelta:
+            case "1":
+                gestore.visualizza()
+            case "2":
+                gestore.aggiungi()
+            case "3":
+                gestore.modifica()
+            case "4":
+                gestore.elimina()
+            case "5":
+                print("Arrivederci.")
+                break
+            case _:
+                print("Scelta non valida.")
