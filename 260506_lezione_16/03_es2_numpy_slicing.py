@@ -37,8 +37,10 @@ every3 = nums[::3]      # utilizzo solo step = 3
 print("Ogni terzo elemento:   ", every3)
 
 # 6. Modifica elementi indice 5 → 10 (escluso) assegnando 99.
-nums[5:10] = 99         # assegnazione tramite slice
-print("Array dopo modifica:   ", nums)
+nums_m = nums.copy()
+nums_m[5:10] = 99         # assegnazione tramite slice
+print("Array dopo modifica:   ", nums_m)
+
 
 # --- BONUS ---
 
