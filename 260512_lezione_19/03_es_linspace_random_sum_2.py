@@ -35,18 +35,18 @@ while True:
     while scelta not in ["w", "a"]:
         scelta = input("Inserisci solo 'w' oppure 'a': ").lower()
 
-    with open("260512_lezione_19/risultati.txt", scelta, encoding="utf-8") as file:
+    with open("260512_lezione_19/risultati.txt", scelta, encoding="utf-8") as f:
 
-        file.write("\n========================\n")
-        file.write("NUOVA ESECUZIONE\n")
-        file.write("========================\n")
+        f.write("\n========================\n")
+        f.write("NUOVA ESECUZIONE\n")
+        f.write("========================\n")
 
-        file.write(f"\nArray linspace:\n{arr}\n")
-        file.write(f"\nArray random:\n{rand}\n")
-        file.write(f"\nSomma array precedenti:\n{arr_sum}\n")
+        f.write(f"\nArray linspace:\n{arr}\n")
+        f.write(f"\nArray random:\n{rand}\n")
+        f.write(f"\nSomma array precedenti:\n{arr_sum}\n")
 
-        file.write(f"\nSomma totale: {tot:.2f}\n")
-        file.write(f"Somma valori > 5: {above_5:.2f}\n")
+        f.write(f"\nSomma totale: {tot:.2f}\n")
+        f.write(f"Somma valori > 5: {above_5:.2f}\n")
 
     print("\nDati salvati in risultati.txt")
 
